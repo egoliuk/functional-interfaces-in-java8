@@ -47,9 +47,13 @@ public class FunctionExample {
         /** Code examples with BinaryOperator */
         BinaryOperator<Integer> adder = (n1, n2) -> n1 + n2;
         System.out.println("Sum -> " + adder.apply(3, 4));
-        BinaryOperator<Integer> getMin = BinaryOperator.minBy((n1, n2) -> n1 > n2 ? 1 : n1 == n2 ? 0 : -1);
+        BinaryOperator<Integer> getMin = BinaryOperator.minBy((n1, n2) ->
+                n1 > n2 ? 1 : n1 == n2 ? 0 : -1
+        );
         System.out.println("Min value -> " + getMin.apply(2, 3));
-        BinaryOperator<Integer> getMax = BinaryOperator.maxBy((n1, n2) -> n1 > n2 ? 1 : n1 == n2 ? 0 : -1);
+        BinaryOperator<Integer> getMax = BinaryOperator.maxBy((n1, n2) ->
+                n1 > n2 ? 1 : n1 == n2 ? 0 : -1
+        );
         System.out.println("Max value -> " + getMax.apply(2, 3));
     }
 }

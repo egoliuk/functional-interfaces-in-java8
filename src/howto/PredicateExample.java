@@ -20,7 +20,8 @@ public class PredicateExample {
 
         /** Print even numbers greater than 5 */
         Predicate<Integer> predicateGreaterThanFive = n -> n > 5;
-        eval(integers, predicateForEvenNumbers.and(predicateGreaterThanFive), "Print even numbers greater than 5:");
+        eval(integers, predicateForEvenNumbers.and(predicateGreaterThanFive),
+                "Print even numbers greater than 5:");
 
         /** Print the same */
         eval(integers, n -> n % 2 == 0 && n > 5, "Print the same:");
@@ -30,7 +31,10 @@ public class PredicateExample {
 
         /** Print all even numbers or odd numbers greater than 5 */
         eval(integers,
-                predicateForEvenNumbers.or(predicateForEvenNumbers.negate().and(predicateGreaterThanFive)),
+                predicateForEvenNumbers
+                        .or(predicateForEvenNumbers
+                                .negate()
+                                .and(predicateGreaterThanFive)),
                 "Print all even numbers or odd numbers greater than 5:");
 
         /** Print test for null-safe method `isEqual` */
@@ -47,9 +51,9 @@ public class PredicateExample {
     /**
      * Helper method to evaluate predicate on the given argument and display results
      *
-     * @param list is a collection of arguments for predicate.
+     * @param list      is a collection of arguments for predicate.
      * @param predicate is boolean-valued function which we are testing.
-     * @param banner is a header of output info.
+     * @param banner    is a header of output info.
      */
     public static void eval(List<Integer> list, Predicate<Integer> predicate, String banner) {
         System.out.println(banner);
