@@ -20,8 +20,9 @@ public class PredicateExample {
 
         /** Print even numbers greater than 5 */
         Predicate<Integer> predicateGreaterThanFive = n -> n > 5;
-        eval(integers, predicateForEvenNumbers.and(predicateGreaterThanFive),
-                "Print even numbers greater than 5:");
+        eval(integers,
+            predicateForEvenNumbers.and(predicateGreaterThanFive),
+            "Print even numbers greater than 5:");
 
         /** Print the same */
         eval(integers, n -> n % 2 == 0 && n > 5, "Print the same:");
@@ -29,23 +30,20 @@ public class PredicateExample {
         /** Print odd numbers */
         eval(integers, predicateForEvenNumbers.negate(), "Print odd numbers:");
 
+        /** Print true if a collection contains more than five or less than three integers */
+        Predicate<List<Integer>> isMoreThanFive  = (list)-> list.size() > 5;
+        Predicate<List<Integer>> isLessThanThree  = (list)-> list.size() < 3;
+
+        System.out.println("Print \"true\" if one of the conditions is satisfied\n"
+                +isMoreThanFive.or(isLessThanThree).test(integers));
+
         /** Print all even numbers or odd numbers greater than 5 */
         eval(integers,
-                predicateForEvenNumbers
-                        .or(predicateForEvenNumbers
-                                .negate()
-                                .and(predicateGreaterThanFive)),
-                "Print all even numbers or odd numbers greater than 5:");
-
-        /** Print test for null-safe method `isEqual` */
-        System.out.println("Print test for null-safe method isEqual:");
-        Predicate<String> fromString = Predicate.isEqual("this value");
-        Predicate<String> fromNull = Predicate.isEqual(null);
-        System.out.println(fromString.test("this value"));
-        System.out.println(fromString.test("another value"));
-        System.out.println(fromString.test(null));
-        System.out.println(fromNull.test(null));
-
+            predicateForEvenNumbers
+                    .or(predicateForEvenNumbers
+                    .negate()
+                    .and(predicateGreaterThanFive)),
+            "Print all even numbers or odd numbers greater than 5:");
     }
 
     /**
